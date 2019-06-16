@@ -1,0 +1,14 @@
+alias ls='ls --color=auto'
+alias cp='cp -vi'
+alias mv='mv -vi'
+alias rm='rm -vi'
+
+bind '^L'=clear-screen
+bind '^f'=forward-char
+bind '^b'=backward-char
+bind '^a'=beginning-of-line
+bind '^e'=end-of-line
+bind '^w'=delete-char-forward
+
+PS1=$'\001\r''$(d=${PWD/$HOME/\~} d=${d##*/} ;\
+print "\e[32m$d\e[37m \e[31m\$\e[37m ")'
