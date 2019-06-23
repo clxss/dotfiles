@@ -1,0 +1,61 @@
+diff --git a/emacs.d/init.el b/emacs.d/init.el
+index 25947d4..f3e1802 100644
+--- a/emacs.d/init.el
++++ b/emacs.d/init.el
+@@ -36,10 +36,6 @@
+   :config
+   (push 'company-lsp company-backends))
+ 
+-(use-package flycheck
+-  :hook
+-  (after-init . global-flycheck-mode))
+-
+ (use-package ccls
+   :init
+   (setq ccls-executable "/usr/bin/ccls")
+@@ -54,10 +50,34 @@
+   :hook
+   (c++-mode . my-c++-mode-hook))
+ 
+-(use-package twilight-theme
++(use-package flycheck
++   :hook
++   (prog-mode . global-flycheck-mode))
++
++(use-package flycheck-rust
++  :hook
++  ((flycheck-mode . flycheck-rust-setup)
++   (rust-mode . flycheck-mode)))
++
++(use-package rust-mode
++  :init
++  (setq rust-format-on-save t))
++
++(use-package nord-theme
+   :config
+   (when (display-graphic-p)
+-    (load-theme 'twilight t)))
++    (load-theme 'nord t)))
++
++(use-package telephone-line
++  :init
++  (setq telephone-line-primary-left-separator 'telephone-line-cubed-left
++	telephone-line-secondary-left-separator 'telephone-line-cubed-hollow-left
++	telephone-line-primary-right-separator 'telephone-line-cubed-right
++	telephone-line-secondary-right-separator 'telephone-line-cubed-hollow-right)
++  (setq telephone-line-height 24
++	telephone-line-evil-use-short-tag t)
++  :config
++  (telephone-line-mode t))
+ 
+ (use-package projectile
+   :bind
+@@ -99,7 +119,7 @@
+ 
+   (add-to-list 'default-frame-alist '(font . "IBM Plex Mono-13"))
+   (set-face-attribute 'default nil :font "IBM Plex Mono-13")
+-  ;; (set-frame-font "IBM Plex Mono-13" nil t)
++  (set-frame-font "IBM Plex Mono-13" nil t)
+   
+   (setq auto-save-default nil
+ 	backup-by-copying t
