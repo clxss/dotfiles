@@ -2,6 +2,9 @@ alias ls='ls --color=auto'
 alias cp='cp -vi'
 alias mv='mv -vi'
 alias rm='rm -vi'
+alias gc='git commit'
+alias gs='git status'
+alias gl='git log --pretty=short'
 
 bind '^L'=clear-screen
 bind '^f'=forward-char
@@ -12,3 +15,4 @@ bind '^w'=delete-char-forward
 
 PS1=$'\001\r''$(d=${PWD/$HOME/\~} d=${d##*/} ;\
 print "\e[32m$d\e[37m \e[31m\$\e[37m ")'
+
